@@ -15,9 +15,13 @@
         </p> 
         <p style="font-size: 20px;"><b>A NOTE ABOUT THE DATA:</b> This data was gathered using <a href="https://pypi.org/project/yfinance/">yfinance</a>, a python
              adaptor for Yahoo Finance's public API of stock trading prices and company info. The data of all companies was combined, cleaned, formatted, and exported to files in python, no additional attributes were derived other than the ones already available in yfinance, except for the correlation data for the node-link diagram. Although possible using d3, deriving the (503 * 503) coorelation coefficents in javascript 
-            would add significant loading time to an already slow-loading page, so the network dataset was preproccessd for a better experience.</p>
+            would add significant loading time to an already slow-loading page, so the network dataset was preproccessd for a better experience. The python code used to extract the data is available at this project's <a href='https://github.com/thevaderdude/dsc106-final'>github</a>.</p>
 
         <h2 style="text-align: center;">How have the prices of S&P 500 companies changed?</h2>
+        <p style="font-size: 20px;">Explore the graph below to get a sense of the price change of different stocks over different time intervals, 
+        with respect to their Market Cap and Sector. Market Capitalization (Market Cap) of a company is defined as the total number of outstanding
+    shares multiplied by the current trading price of the stock. Market Cap represents the value/size of a company, and is encoded here in the size of the circle.
+Red circles represent stocks that have declined in price, while green circles are stocks that have increased in price. Adjust the slider and radio to see the change in price on different intervals. <b>Note: In the proposal this originally going to be a box chart, with market cap encoded by the area of a rectangle, but I decided to use circles because I think they look better :)</b></p>
         <div id="radio" class="center_plot">
             <input type="radio" id="1d" name="interval" value="1" checked="checked">
             <label for="1d">1d</label>
@@ -39,15 +43,38 @@
         <div id="plot1" class="center_plot"></div>
 
         <h2 style="text-align: center;">Have Bigger Companies Grown More in the Past Year?</h2>
+        <p style="font-size: 20px;">
+         The size of the circles in the graph above makes one wonder if the size of the company has affected the growth of the stock price in the last year.
+         Below is a scatterplot of the market cap of a company on the x-axis (log scaled for better visibility) and yearly % change in price on the y-axis. Hovering over a single point will reveal a tooltip with 
+         more specific info about that point. There seems to be somewhat of a positive coorelation between market cap and yearly growth %. What is interesting are the outliers towards the right (the biggest companies), most of which have had negative growth in the past year. 
+         There are actually very few points with positive growth in the past year.
+        </p>
         <div id="plot2" class="center_plot"></div>
 
         <h2 style="text-align: center;">How Has the Market Cap of Different Sectors Changed Over Time?</h2>
+        <p style="font-size: 20px;">
+           The two graphs above make us wonder about the different total market caps of industries, and their change over time. Below is a bar chart 
+           of total market cap by sector. Notice Information Technology and Communication Services are the two biggest sectors in the S&P 500. Pressing the button below
+           will animate the change in market cap over the past year. Notice how all the different industries expand and contract at once, while IT has more dramatic swings.
+           </p>
         <div class="center_plot"><button id="plot3animate">Animate</button></div>
         <br>
         <div id="plot3" class="center_plot"></div>
         <h2 style="text-align: center;">What Does the Trading Volume of Different Industries Look Like Ove Time?</h2>
+        <p style="font-size: 20px;">
+        The graph above shows expansions and contractions of the market. Typically, during a market-wide sell-off or rally, there is a huge amount of 
+        trading volume in the market, as investors want to make / don't want to lose their money. The streamgraph below shows total trading volume of
+        different sectors over time. Notice several spikes of volume (usually only lasting a single day). These coencide with the expansions and contractions seen in the previous graph.
+    </p>
         <div id="plot4" class="center_plot"></div>
         <h2 style="text-align: center;">How are stocks coorelated with each other?</h2>
+        <p style="font-size: 20px;">
+           We've seen how different features of stocks affect their growth over time, but how about the association of stocks with other stocks? Below is a network
+           graph showing different stocks represented by their logos, with circles representing their market cap, with links in between them that represent the amount of correlation there 
+           is between the stocks. The stocks below are only stocks that have a market cap above 100 Billion, and the links shown have a coorelation coefficent above 0.7, because most stocks are correlated with eachother.
+           We can see some pretty ovbious coorelations in this graph: Visa and Mastercard; Google, Meta, Microsoft, Apple, and Amazon; BG, Wells Fargo, and Bank of America; P&G and CocaCola; etc. What is super 
+           interesting is at the bottom there is an entirely seperate network with healthcare companies: Pfizer, Bristol Myers, and J&J. 
+        </p>
         <div id="plot5" class="center_plot"></div>
 
 

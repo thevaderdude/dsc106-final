@@ -313,6 +313,13 @@ function plot2(prices, stats) {
             .attr("x", width / 2)
             .attr("y", height - 5)
             .text("Market Cap (log scale)");
+
+            svg.append('text').attr("text-anchor", "end")
+            .attr("x", 700)
+            .attr("y", 30)
+            .style('font-size', 25)
+            .text("Scatterplot of Yearly Growth % against Market Cap");
+    
     
             svg.append('text').attr("text-anchor", "end")
             .attr('x', "-500")
