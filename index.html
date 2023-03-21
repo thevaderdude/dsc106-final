@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <script type="text/javascript" src="index.js">
+        </script>  
+    <link rel="stylesheet" href="index.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>S&P 500, Visualized</title>
+    </head>
+    <body onload=main()>
+        <h1 style="text-align: center;">How's the Stock Market Doing?</h1>
+        <p style="font-size: 20px;">That's what this visualization dashboard is meant to answer, without the use of the standard <a href='https://datavizcatalogue.com/methods/candlestick_chart.html'>Candlestick Chart</a>.
+        The S&P 500 index is a capped, weighted sum of the top (503) United States publicly traded stocks. It is the golden indicator of the status of the domestic (and global) economy. In the past year, various economic factors including a recession have led to 
+        a decline in the trading prices of many S&P component companies. This dashboard is meant to explore this decline: how it relates to company sector, company size (Market Cap), trading volume, 
+        and the correlation of different stock's price action.
+        </p> 
+        <p style="font-size: 20px;"><b>A NOTE ABOUT THE DATA:</b> This data was gathered using <a href="https://pypi.org/project/yfinance/">yfinance</a>, a python
+             adaptor for Yahoo Finance's public API of stock trading prices and company info. The data of all companies was combined, cleaned, formatted, and exported to files in python, no additional attributes were derived other than the ones already available in yfinance, except for the correlation data for the node-link diagram. Although possible using d3, deriving the (503 * 503) coorelation coefficents in javascript 
+            would add significant loading time to an already slow-loading page, so the network dataset was preproccessd for a better experience.</p>
+
+        <h2 style="text-align: center;">How have the prices of S&P 500 companies changed?</h2>
+        <div id="radio" class="center_plot">
+            <input type="radio" id="1d" name="interval" value="1" checked="checked">
+            <label for="1d">1d</label>
+            <input type="radio" id="1w" name="interval" value="5">
+            <label for="1w">1w</label>
+            <input type="radio" id="1m" name="interval" value="22">
+            <label for="1m">1m</label>
+            <input type="radio" id="3m" name="interval" value="66">
+            <label for="3m">3m</label>
+            <input type="radio" id="6m" name="interval" value="125">
+            <label for="6m">6m</label>
+            <input type="radio" id="1y" name="interval" value="250">
+            <label for="1y">1y</label>
+        </div>
+        <div class="slidecontainer center_plot">
+            <input type="range" min="0" max="249" value="249" class="slider" id="dateIdx">
+            <div id="curDate">2023-03-19</div>
+        </div>
+        <div id="plot1" class="center_plot"></div>
+
+        <h2 style="text-align: center;">Have Bigger Companies Grown More in the Past Year?</h2>
+        <div id="plot2" class="center_plot"></div>
+
+        <h2 style="text-align: center;">How Has the Market Cap of Different Sectors Changed Over Time?</h2>
+        <div class="center_plot"><button id="plot3animate">Animate</button></div>
+        <br>
+        <div id="plot3" class="center_plot"></div>
+        <h2 style="text-align: center;">What Does the Trading Volume of Different Industries Look Like Ove Time?</h2>
+        <div id="plot4" class="center_plot"></div>
+        <h2 style="text-align: center;">How are stocks coorelated with each other?</h2>
+        <div id="plot5" class="center_plot"></div>
+
+
+
+    </body>
+</html>
